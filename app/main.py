@@ -41,4 +41,23 @@ def create_task(task: dict, db: Session = Depends(get_db)):
     return {"message": "Task created successfully"}
 
 
+@app.delete("/tasks/{task_id}", status_code=200)
+def delete_task(task_id: int, db: Session = Depends(get_db)):
+    result =  db.execute(text("SELECT * FROM tasks WHERE id = :id"), {"id": task_id})
+    if not result.mappings().first():
+        raise HTTPException(status_code=404, detail="Task not found")
+    db.execute(text("DELETE FROM tasks WHERE id = :id"), {"id": task_id})
+    db.commit()
+
+    return {"message": "Task deleted successfully"}
+
+
+@app.delete("/deletetask")
+def delete_task(status: str, db: Session = Depends(get_db)):
+    result = db.execute(text("SELECT* FROM tasks WHERE status = :status"), {"status" : status}) 
+    if not result.mappings().first():
+        raise HTTPException(status_code=404, detail="Task not found")
+    db.execute(text("DELETE FROM tasks WHERE status = :status"), {"status" : status})
+    db.commit()
+    return {"message": "Task deleted successfully"}
 
