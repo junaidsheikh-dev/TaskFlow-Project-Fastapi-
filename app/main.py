@@ -1,11 +1,12 @@
-from fastapi import FastAPI, HTTPException, Depends
-from database import get_db
-from sqlalchemy.orm import Session
-from sqlalchemy import text
-import schemas
+from fastapi import FastAPI
 from routers import tasks
+from database import engine, Base
+from models import Task
+
+
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-
 
 app.include_router(tasks.router)
