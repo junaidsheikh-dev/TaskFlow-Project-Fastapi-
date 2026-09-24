@@ -42,7 +42,7 @@ def get_task_by_status(status:str, db: Session = Depends(get_db)):
 
 @router.post("/", status_code=201)
 def create_task(task: schemas.CreateTask, db: Session = Depends(get_db)):
-    db.execute(text("INSERT INTO tasks (title, status) VALUES (:title, :status)"), {"title": task.title, "status": task.status})
+    db.execute(text("INSERT INTO tasks (title, status, description) VALUES (:title, :status, :description)"), {"title": task.title, "status": task.status, "description": task.description})
     db.commit()
     return {"message": "Task created successfully"}
 
@@ -83,6 +83,9 @@ def update_task(task_id : int, task: schemas.UpdateTask, db: Session = Depends(g
 
     if "status" in update_data:
         db.execute(text("UPDATE tasks SET status = :status WHERE id = :id"), {"status": task.status, "id": task_id})
+
+    if "description" in update_data:
+        db.execute(text("UPDATE tasks SET description = :description WHERE id = :id"), {"description": task.description, "id": task_id})
     # db.execute(text("UPDATE tasks SET title = :title, status = :status WHERE id = :id"), {"title": task.title, "status": task.status, "id": task_id})
     
     db.commit()

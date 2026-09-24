@@ -12,6 +12,7 @@ class StatusEnum(str, Enum):
 class CreateTask(BaseModel):
     title: str = Field(min_length = 3, max_length = 50)
     status: StatusEnum = StatusEnum.pending
+    description: str | None = Field(default = None, min_length = 3, max_length = 200)
 
 
 class ResponseTask(CreateTask):
@@ -21,3 +22,4 @@ class ResponseTask(CreateTask):
 class UpdateTask(BaseModel):
     title: str | None = Field(default = None, min_length = 3, max_length = 50)
     status: StatusEnum | None = None
+    description: str | None = Field(default = None, min_length = 3, max_length = 200)

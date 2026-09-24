@@ -9,8 +9,8 @@ class Task(Base):
     __tablename__ = "tasks"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[str]
+    title: Mapped[str] = mapped_column(nullable=False)
     status: Mapped[str] = mapped_column(default="todo")
-    priority: Mapped[int] = mapped_column(default=3)
+    # priority: Mapped[int] = mapped_column(default=3)
     description: Mapped[str | None] = mapped_column(default=None)
-    created_at = Column(TIMESTAMP(timezone=True), nullable = False, server_default=text('now()'))
+    created_at: Mapped[TIMESTAMP] = mapped_column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
