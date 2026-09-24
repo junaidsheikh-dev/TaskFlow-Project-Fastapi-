@@ -1,9 +1,6 @@
 .venv/
-venv/
-env/
 
 __pycache__/
-*.py[cod]
 
 .env
 .env.*
@@ -13,9 +10,3 @@ __pycache__/
 
 .DS_Store
 Thumbs.db
-
-.pytest_cache/
-.coverage
-htmlcov/
-
-*.log
