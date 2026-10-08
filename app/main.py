@@ -1,7 +1,6 @@
 from fastapi import FastAPI
-from routers import tasks
-from database import engine, Base
-from models import Task
+from app.routers import tasks
+from app.database import engine, Base
 
 
 
