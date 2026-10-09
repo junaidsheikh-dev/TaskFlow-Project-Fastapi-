@@ -12,3 +12,6 @@ psycopg[binary]
 
 # Environment variable management
 python-dotenv
+
+# Migrations
+alembic

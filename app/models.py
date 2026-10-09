@@ -2,7 +2,8 @@ from sqlalchemy import Column
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
-from database import Base
+from datetime import datetime
+from app.database import Base
 
 
 class Task(Base):
@@ -13,4 +14,5 @@ class Task(Base):
     status: Mapped[str] = mapped_column(default="todo")
     # priority: Mapped[int] = mapped_column(default=3)
     description: Mapped[str | None] = mapped_column(default=None)
+    due_date: Mapped[datetime | None] = mapped_column(default=None)
     created_at: Mapped[TIMESTAMP] = mapped_column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
