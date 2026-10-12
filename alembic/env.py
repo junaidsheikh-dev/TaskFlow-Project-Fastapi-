@@ -8,7 +8,7 @@ import os
 from dotenv import load_dotenv
 
 from app.database import Base
-from app.models import Task  # so the base knows about the models and can generate migrations
+import app.models  # so the base knows about the models and can generate migrations
 load_dotenv()
 
 # this is the Alembic Config object, which provides
