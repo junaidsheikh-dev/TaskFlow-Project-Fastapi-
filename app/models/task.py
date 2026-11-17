@@ -17,7 +17,7 @@ class Task(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(nullable=False)
     status: Mapped[str] = mapped_column(default="todo")
-    # priority: Mapped[int] = mapped_column(default=3)
+    priority: Mapped[int] = mapped_column(default=3)
     description: Mapped[str | None] = mapped_column(default=None)
     due_date: Mapped[datetime | None] = mapped_column(default=None)
     created_at: Mapped[TIMESTAMP] = mapped_column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
