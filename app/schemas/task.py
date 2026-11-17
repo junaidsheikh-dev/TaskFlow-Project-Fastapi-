@@ -8,6 +8,7 @@ class TaskStatus(str, Enum):
     pending = "pending"
     in_progress = "in progress"
     completed = "completed"
+    todo = "todo"
 
 
 class TaskCreate(BaseModel):
@@ -29,6 +30,8 @@ class TaskResponse(TaskCreate):
     project_id: int | None = None
     assignee_id: int | None = None
     created_at: datetime
+
+    model_config = {"from_attributes": True}
 
 
 class TaskUpdate(BaseModel):

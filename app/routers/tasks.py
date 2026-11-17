@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import text
 from app.database import get_db
 from app.models.task import Task          # adjust to your models layout
-from app.schemas import (
+from app.schemas.task import (
     TaskCreate,
     TaskPage,
     TaskResponse,
